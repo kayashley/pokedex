@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, intial-scale" />
+        <title>Pokéapp</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/styles.css">
+        <script>
+            // search through all pokemons
+            function searchPokemon() {
+                let input = document.getElementById("search-input").value.toLowerCase();
+                let pokemonList = pokemonRepository.getAll();
+                let row = document.getElementById("row");
+
+                // clear the existing list
+                row.innerHTML = "";
+
+                // filter and display pokemon based on search input
+                pokemonList.forEach(function (pokemon) {
+                if (pokemon.name.toLowerCase().includes(input)) {
+                    pokemonRepository.addListItem(pokemon);
+                }
+                });
+            }
+        </script>
+
+    </head>
+    <body>
+        <main>
+            <header>
+                <img src="/img/psyduck.png" class="icon" alt="pokeball icon">
+
+                <h1>POKÉDEX</h1>
+                <!-- <p>List of Pokemons</p> -->
+
+                
+            </header>
+
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search Pokémon..." oninput="searchPokemon()">
+                </div>
+
+            <!-- list of pokemons -->
+             <div class="container">
+                 <ul class="list-group"></ul>
+                 <div id="row" class="pokemon-list row"></div>
+             </div>
+    
+             <!-- modal -->
+              <!-- <button id="show-modal">Show Modal</button> -->
+              <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalTitle">Pokemon Details</h5>
+                            <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="close-btn" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>created by © Kayla Chan</p>
+        </footer>
+
+        <!-- javscript -->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+            <script src="js/promise-polyfill.js"></script>
+            <script src="js/scripts.js"></script>       
+    </body>
+</html>
